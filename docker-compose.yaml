@@ -2,6 +2,7 @@ services:
   mssql:
     container_name: mssql
     image: mcr.microsoft.com/mssql/server:2022-latest
+    user: root
     networks:
       - mssql-network
     environment:
@@ -9,7 +10,7 @@ services:
       - ACCEPT_EULA=Y
       - MSSQL_SA_PASSWORD=StrongPassword99!
     ports:
-      - "1433:1433"
+      - "1432:1432" #host port : container port
     volumes:
       - ./data:/var/opt/mssql/data
       - ./log:/var/opt/mssql/log
